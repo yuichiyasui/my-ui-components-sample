@@ -15,6 +15,10 @@ module.exports = {
   webpackFinal: async (config) => {
     config.resolve = {
       extensions: ['.ts', '.tsx', '.js', '.css'],
+      alias: {
+        ...config.resolve.alias,
+        '@': path.resolve(__dirname, '../src'),
+      },
     };
 
     return config;
