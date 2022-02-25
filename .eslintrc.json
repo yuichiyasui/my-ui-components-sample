@@ -1,3 +1,8 @@
 {
-  "extends": ["next/core-web-vitals", "prettier"]
+  "extends": ["next/core-web-vitals", "prettier"],
+  "rules": {
+    // TODO: Next.js v12.1.1のリリースで不具合が修正されたら解除する
+    // https://github.com/vercel/next.js/issues/34798
+    "react/jsx-key": "off"
+  }
 }
