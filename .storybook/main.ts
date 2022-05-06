@@ -1,7 +1,8 @@
-const path = require('path');
+import type { StorybookViteConfig } from '@storybook/builder-vite';
+import path from 'path';
 
-module.exports = {
-  typescript: { reactDocgen: false },
+const config: StorybookViteConfig = {
+  framework: '@storybook/react',
   stories: ['../src/**/*.stories.@(ts|tsx)'],
   addons: [
     '@storybook/addon-links',
@@ -16,18 +17,19 @@ module.exports = {
       },
     },
   ],
+  core: {
+    builder: '@storybook/builder-vite',
+  },
   features: {
     storyStoreV7: true,
   },
-  framework: '@storybook/react',
-  core: {
-    builder: 'webpack5',
+  typescript: {
+    reactDocgen: 'react-docgen',
   },
-  webpackFinal: async (config) => {
+  async viteFinal(config) {
     config.resolve = {
       extensions: ['.ts', '.tsx', '.js', '.css'],
       alias: {
-        ...config.resolve.alias,
         '@': path.resolve(__dirname, '../src'),
       },
     };
@@ -35,3 +37,5 @@ module.exports = {
     return config;
   },
 };
+
+export default config;
