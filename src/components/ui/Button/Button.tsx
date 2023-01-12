@@ -1,17 +1,18 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
+import { ComponentProps } from 'react';
 
-type Props = DetailedHTMLProps<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
->;
+type Props = {
+  size: 'small' | 'large';
+  label: string;
+  primary: boolean;
+} & ComponentProps<'button'>;
 
-export const Button = ({ children, className, ...props }: Props) => {
+export const Button = ({ label, className, ...props }: Props) => {
   return (
     <button
       {...props}
       className={`${className ? className : ''} py-2 px-4 rounded shadow`}
     >
-      {children}
+      {label}
     </button>
   );
 };
