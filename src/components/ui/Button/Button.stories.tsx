@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { Button } from './Button';
 
@@ -7,31 +7,31 @@ export default {
   argTypes: {
     backgroundColor: { control: 'color' },
   },
-} as ComponentMeta<typeof Button>;
+} as Meta<typeof Button>;
 
-export const Primary: ComponentStoryObj<typeof Button> = {
+export const Primary: StoryObj<typeof Button> = {
   args: {
     primary: true,
-    label: 'Button',
+    children: 'Button',
   },
 };
 
-export const Secondary: ComponentStoryObj<typeof Button> = {
+export const Secondary: StoryObj<typeof Button> = {
   args: {
-    label: 'Button',
+    children: 'Button',
   },
 };
 
-export const Large: ComponentStoryObj<typeof Button> = {
+export const Large: StoryObj<typeof Button> = {
   args: {
     size: 'large',
-    label: 'Button',
+    children: 'Button',
   },
 };
 
-export const Small: ComponentStoryObj<typeof Button> = {
+export const Small: StoryObj<typeof Button> = {
   args: {
     size: 'small',
-    label: 'Button',
+    children: 'Button',
   },
 };
