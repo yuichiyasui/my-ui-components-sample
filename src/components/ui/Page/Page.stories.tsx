@@ -1,5 +1,4 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentMeta, ComponentStoryObj } from '@storybook/react';
 import { within, userEvent } from '@storybook/testing-library';
 import { Page } from './Page';
 
@@ -12,15 +11,12 @@ export default {
   },
 } as ComponentMeta<typeof Page>;
 
-const Template: ComponentStory<typeof Page> = (args) => <Page {...args} />;
+export const LoggedOut: ComponentStoryObj<typeof Page> = {};
 
-export const LoggedOut = Template.bind({});
-
-export const LoggedIn = Template.bind({});
-
-// More on interaction testing: https://storybook.js.org/docs/react/writing-tests/interaction-testing
-LoggedIn.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const loginButton = await canvas.getByRole('button', { name: /Log in/i });
-  await userEvent.click(loginButton);
+export const LoggedIn: ComponentStoryObj<typeof Page> = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const loginButton = canvas.getByRole('button', { name: /Log in/i });
+    userEvent.click(loginButton);
+  },
 };

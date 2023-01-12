@@ -1,26 +1,34 @@
 const path = require('path');
+const { mergeConfig } = require('vite');
 
 module.exports = {
-  typescript: { reactDocgen: false },
   stories: ['../src/**/*.stories.@(ts|tsx)'],
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
+    '@storybook/addon-postcss',
   ],
-  framework: '@storybook/react',
-  core: {
-    builder: 'webpack5',
+  framework: {
+    name: '@storybook/react-vite',
+    options: {},
   },
-  webpackFinal: async (config) => {
-    config.resolve = {
-      extensions: ['.ts', '.tsx', '.js', '.css'],
-      alias: {
-        ...config.resolve.alias,
-        '@': path.resolve(__dirname, '../src'),
+  features: {
+    storyStoreV7: true,
+  },
+  viteFinal: async (config) => {
+    return mergeConfig(config, {
+      define: {
+        global: 'window',
       },
-    };
-
-    return config;
+      resolve: {
+        alias: {
+          '@': path.resolve(__dirname, '../src'),
+        },
+      },
+    });
+  },
+  docs: {
+    autodocs: true,
   },
 };
