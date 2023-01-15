@@ -1,4 +1,6 @@
 import { Button } from '@/components/ui/Button';
+import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
+import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useEffect, useRef, useState } from 'react';
 
@@ -7,7 +9,7 @@ type Item = {
   name: string;
 };
 
-const TransitionHeightPage = () => {
+const TransitionHeightPage: NextPage = () => {
   const [items, setItems] = useState<Item[]>([]);
   const [height, setHeight] = useState<'auto' | number>('auto');
   const itemListRef = useRef<HTMLUListElement | null>(null);
@@ -38,8 +40,21 @@ const TransitionHeightPage = () => {
       </Head>
 
       <main className="p-10">
+        <Breadcrumbs
+          links={[
+            {
+              href: '/',
+              pageTitle: 'TOP',
+            },
+            {
+              href: '/samples/transition-height',
+              pageTitle: 'Transition Height',
+            },
+          ]}
+          className="mb-4"
+        />
         <section>
-          <h1 className="mb-8 text-3xl">Transition Height</h1>
+          <h1 className="mb-8 text-3xl font-bold">Transition Height</h1>
           <div className="flex gap-x-2 mb-4">
             <Button
               type="button"
