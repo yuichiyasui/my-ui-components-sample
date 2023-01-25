@@ -20,6 +20,7 @@ module.exports = {
     return mergeConfig(config, {
       define: {
         global: 'window',
+        'process.env': {},
       },
       resolve: {
         alias: {
