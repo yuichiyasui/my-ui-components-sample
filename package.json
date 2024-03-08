@@ -11,6 +11,10 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
+  "volta": {
+    "node": "21.7.0",
+    "pnpm": "8.15.4"
+  },
   "dependencies": {
     "clsx": "1.2.1",
     "next": "13.1.1",
